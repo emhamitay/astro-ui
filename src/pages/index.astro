@@ -1,0 +1,459 @@
+---
+import '@/styles/globals.css';
+import Layout from '../layouts/Layout.astro';
+import ThemeSwitcher from '@/components/showcase/ThemeSwitcher.astro';
+import PreviewCard from '@/components/showcase/PreviewCard.astro';
+import ShadcnLinkCard from '@/components/showcase/ShadcnLinkCard.astro';
+import Button from '@/components/astro/Button.astro';
+import Badge from '@/components/astro/Badge.astro';
+import Card from '@/components/astro/Card.astro';
+import CardHeader from '@/components/astro/CardHeader.astro';
+import CardTitle from '@/components/astro/CardTitle.astro';
+import CardDescription from '@/components/astro/CardDescription.astro';
+import CardContent from '@/components/astro/CardContent.astro';
+import CardFooter from '@/components/astro/CardFooter.astro';
+import Alert from '@/components/astro/Alert.astro';
+import AlertTitle from '@/components/astro/AlertTitle.astro';
+import AlertDescription from '@/components/astro/AlertDescription.astro';
+import Avatar from '@/components/astro/Avatar.astro';
+import Separator from '@/components/astro/Separator.astro';
+import Skeleton from '@/components/astro/Skeleton.astro';
+import Progress from '@/components/astro/Progress.astro';
+import Input from '@/components/astro/Input.astro';
+import Textarea from '@/components/astro/Textarea.astro';
+import Label from '@/components/astro/Label.astro';
+import Breadcrumb from '@/components/astro/Breadcrumb.astro';
+import Table from '@/components/astro/Table.astro';
+
+const staticSections = [
+  'button','badge','card','alert','avatar',
+  'separator','skeleton','progress','input',
+  'textarea','label','breadcrumb','table',
+];
+
+const reactSections = [
+  { id: 'accordion', label: 'Accordion' },
+  { id: 'alert-dialog', label: 'Alert Dialog' },
+  { id: 'calendar', label: 'Calendar' },
+  { id: 'carousel', label: 'Carousel' },
+  { id: 'checkbox', label: 'Checkbox' },
+  { id: 'collapsible', label: 'Collapsible' },
+  { id: 'command', label: 'Command' },
+  { id: 'context-menu', label: 'Context Menu' },
+  { id: 'dialog', label: 'Dialog' },
+  { id: 'drawer', label: 'Drawer' },
+  { id: 'dropdown-menu', label: 'Dropdown Menu' },
+  { id: 'form', label: 'Form' },
+  { id: 'hover-card', label: 'Hover Card' },
+  { id: 'input-otp', label: 'Input OTP' },
+  { id: 'navigation-menu', label: 'Navigation Menu' },
+  { id: 'popover', label: 'Popover' },
+  { id: 'radio-group', label: 'Radio Group' },
+  { id: 'resizable', label: 'Resizable' },
+  { id: 'scroll-area', label: 'Scroll Area' },
+  { id: 'select', label: 'Select' },
+  { id: 'sheet', label: 'Sheet' },
+  { id: 'slider', label: 'Slider' },
+  { id: 'sonner', label: 'Sonner' },
+  { id: 'switch', label: 'Switch' },
+  { id: 'tabs', label: 'Tabs' },
+  { id: 'toast', label: 'Toast' },
+  { id: 'toggle', label: 'Toggle' },
+  { id: 'toggle-group', label: 'Toggle Group' },
+  { id: 'tooltip', label: 'Tooltip' },
+];
+
+const tableColumns = [
+  { key: 'invoice', header: 'Invoice' },
+  { key: 'status', header: 'Status' },
+  { key: 'method', header: 'Method' },
+  { key: 'amount', header: 'Amount' },
+];
+const tableRows = [
+  { invoice: 'INV-001', status: 'Paid', method: 'Credit Card', amount: '$250.00' },
+  { invoice: 'INV-002', status: 'Pending', method: 'PayPal', amount: '$150.00' },
+  { invoice: 'INV-003', status: 'Unpaid', method: 'Bank Transfer', amount: '$350.00' },
+];
+---
+
+<Layout title="Astro UI - Shadcn Component Library">
+  <div class="min-h-screen bg-background text-foreground">
+
+    <header class="sticky top-0 z-50 border-b bg-background/80 backdrop-blur-md">
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
+        <div class="flex items-center gap-3">
+          <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          </div>
+          <div>
+            <span class="font-bold text-sm tracking-tight">Astro UI</span>
+            <span class="hidden sm:inline text-xs text-muted-foreground ml-2">Shadcn Component Library</span>
+          </div>
+        </div>
+        <a
+          href="https://ui.shadcn.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-xs font-medium hover:bg-accent transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+          shadcn/ui
+        </a>
+      </div>
+    </header>
+
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+
+      <section class="py-12 sm:py-16 border-b">
+        <div class="max-w-3xl">
+          <div class="mb-4 inline-flex items-center gap-2 rounded-full border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
+            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            Astro + Shadcn/UI
+          </div>
+          <h1 class="text-3xl font-bold tracking-tight sm:text-5xl mb-4 leading-tight">
+            Beautiful components,<br class="hidden sm:block" /> zero JS overhead.
+          </h1>
+          <p class="text-muted-foreground text-base sm:text-lg mb-8 max-w-2xl leading-relaxed">
+            Pure Astro components using shadcn/ui's design system. No React, no hydration for static components. Pick a theme, download the CSS, and ship.
+          </p>
+
+          <div class="flex flex-wrap gap-4 mb-8">
+            <div class="flex items-center gap-2 text-sm">
+              <span class="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              </span>
+              <span class="text-muted-foreground">{staticSections.length} Astro components</span>
+            </div>
+            <div class="flex items-center gap-2 text-sm">
+              <span class="flex h-5 w-5 items-center justify-center rounded-full bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+              </span>
+              <span class="text-muted-foreground">{reactSections.length} React component links</span>
+            </div>
+            <div class="flex items-center gap-2 text-sm">
+              <span class="flex h-5 w-5 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </span>
+              <span class="text-muted-foreground">6 built-in themes</span>
+            </div>
+          </div>
+
+          <div class="rounded-xl border bg-card p-5">
+            <div class="flex items-center gap-2 mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg>
+              <span class="text-sm font-semibold">Theme Switcher & CSS Download</span>
+            </div>
+            <ThemeSwitcher />
+          </div>
+        </div>
+      </section>
+
+      <div class="flex gap-8 py-10">
+
+        <aside class="hidden lg:block w-52 shrink-0">
+          <nav class="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pr-2 space-y-0.5">
+            <p class="mb-2 px-2.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Astro Components</p>
+            {staticSections.map((id) => (
+              <a
+                href={`#${id}`}
+                class="flex items-center gap-2 rounded-md px-2.5 py-1.5 text-sm text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-colors capitalize"
+              >
+                <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 shrink-0" />
+                {id.replace(/-/g, ' ')}
+              </a>
+            ))}
+            <div class="pt-4">
+              <p class="mb-2 px-2.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">React Required</p>
+              {reactSections.map(({ id, label }) => (
+                <a
+                  href={`#${id}`}
+                  class="flex items-center gap-2 rounded-md px-2.5 py-1.5 text-sm text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+                >
+                  <span class="h-1.5 w-1.5 rounded-full bg-amber-500 shrink-0" />
+                  {label}
+                </a>
+              ))}
+            </div>
+          </nav>
+        </aside>
+
+        <main class="flex-1 min-w-0 space-y-5">
+
+          <div class="flex items-center gap-3 pb-1">
+            <span class="flex h-6 w-6 items-center justify-center rounded-md bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            </span>
+            <h2 class="text-xl font-bold">Astro Components</h2>
+          </div>
+
+          <PreviewCard
+            id="button"
+            title="Button"
+            description="Displays a button or a component that looks like a button."
+            code={`import Button from '@/components/astro/Button.astro';\n\n<Button>Click me</Button>\n<Button variant="outline">Outline</Button>\n<Button variant="destructive">Delete</Button>`}
+          >
+            <Fragment slot="preview">
+              <Button>Default</Button>
+              <Button variant="outline">Outline</Button>
+              <Button variant="destructive">Destructive</Button>
+              <Button variant="secondary">Secondary</Button>
+              <Button variant="ghost">Ghost</Button>
+              <Button variant="link">Link</Button>
+              <Button size="sm">Small</Button>
+              <Button size="lg">Large</Button>
+            </Fragment>
+          </PreviewCard>
+
+          <PreviewCard
+            id="badge"
+            title="Badge"
+            description="Displays a badge or a component that looks like a badge."
+            code={`import Badge from '@/components/astro/Badge.astro';\n\n<Badge>Default</Badge>\n<Badge variant="secondary">Secondary</Badge>\n<Badge variant="destructive">Destructive</Badge>\n<Badge variant="outline">Outline</Badge>`}
+          >
+            <Fragment slot="preview">
+              <Badge>Default</Badge>
+              <Badge variant="secondary">Secondary</Badge>
+              <Badge variant="destructive">Destructive</Badge>
+              <Badge variant="outline">Outline</Badge>
+            </Fragment>
+          </PreviewCard>
+
+          <PreviewCard
+            id="card"
+            title="Card"
+            description="Displays a card with header, content, and footer."
+            code={`import Card from '@/components/astro/Card.astro';\nimport CardHeader from '@/components/astro/CardHeader.astro';\nimport CardTitle from '@/components/astro/CardTitle.astro';\nimport CardDescription from '@/components/astro/CardDescription.astro';\nimport CardContent from '@/components/astro/CardContent.astro';\nimport CardFooter from '@/components/astro/CardFooter.astro';\n\n<Card>\n  <CardHeader>\n    <CardTitle>Title</CardTitle>\n    <CardDescription>Description</CardDescription>\n  </CardHeader>\n  <CardContent>Content</CardContent>\n  <CardFooter>Footer</CardFooter>\n</Card>`}
+          >
+            <Fragment slot="preview">
+              <Card class="w-72">
+                <CardHeader>
+                  <CardTitle>Notification</CardTitle>
+                  <CardDescription>You have 3 unread messages.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p class="text-sm">Your trial ends in 3 days. Upgrade to keep your data.</p>
+                </CardContent>
+                <CardFooter class="gap-2">
+                  <Button size="sm">Upgrade</Button>
+                  <Button size="sm" variant="outline">Dismiss</Button>
+                </CardFooter>
+              </Card>
+            </Fragment>
+          </PreviewCard>
+
+          <PreviewCard
+            id="alert"
+            title="Alert"
+            description="Displays a callout for user attention."
+            code={`import Alert from '@/components/astro/Alert.astro';\nimport AlertTitle from '@/components/astro/AlertTitle.astro';\nimport AlertDescription from '@/components/astro/AlertDescription.astro';\n\n<Alert>\n  <AlertTitle>Heads up!</AlertTitle>\n  <AlertDescription>You can add components.</AlertDescription>\n</Alert>`}
+          >
+            <Fragment slot="preview">
+              <div class="w-full max-w-md space-y-3">
+                <Alert>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                  <AlertTitle>Information</AlertTitle>
+                  <AlertDescription>This is an informational alert message.</AlertDescription>
+                </Alert>
+                <Alert variant="destructive">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+                  <AlertTitle>Error</AlertTitle>
+                  <AlertDescription>Your session has expired. Please log in again.</AlertDescription>
+                </Alert>
+              </div>
+            </Fragment>
+          </PreviewCard>
+
+          <PreviewCard
+            id="avatar"
+            title="Avatar"
+            description="An image element with a fallback for representing the user."
+            code={`import Avatar from '@/components/astro/Avatar.astro';\n\n<Avatar src="/photo.jpg" alt="Jane Doe" fallback="JD" />\n<Avatar fallback="AB" />\n<Avatar fallback="TZ" size="lg" />`}
+          >
+            <Fragment slot="preview">
+              <div class="flex items-center gap-3">
+                <Avatar src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=150" alt="User" fallback="JD" />
+                <Avatar src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=150" alt="User 2" fallback="AB" />
+                <Avatar fallback="MK" />
+                <Avatar fallback="TZ" size="sm" />
+                <Avatar fallback="PQ" size="lg" />
+              </div>
+            </Fragment>
+          </PreviewCard>
+
+          <PreviewCard
+            id="separator"
+            title="Separator"
+            description="Visually or semantically separates content."
+            code={`import Separator from '@/components/astro/Separator.astro';\n\n<Separator />\n<Separator orientation="vertical" class="h-6" />`}
+          >
+            <Fragment slot="preview">
+              <div class="w-full max-w-sm space-y-4">
+                <div class="space-y-1">
+                  <h4 class="text-sm font-medium">Radix Primitives</h4>
+                  <p class="text-sm text-muted-foreground">An open-source UI component library.</p>
+                </div>
+                <Separator />
+                <div class="flex h-5 items-center gap-4 text-sm">
+                  <span>Blog</span>
+                  <Separator orientation="vertical" />
+                  <span>Docs</span>
+                  <Separator orientation="vertical" />
+                  <span>Source</span>
+                </div>
+              </div>
+            </Fragment>
+          </PreviewCard>
+
+          <PreviewCard
+            id="skeleton"
+            title="Skeleton"
+            description="Use to show a placeholder while content is loading."
+            code={`import Skeleton from '@/components/astro/Skeleton.astro';\n\n<Skeleton class="h-4 w-48" />\n<Skeleton class="h-12 w-12 rounded-full" />`}
+          >
+            <Fragment slot="preview">
+              <div class="flex items-center gap-4">
+                <Skeleton class="h-12 w-12 rounded-full" />
+                <div class="space-y-2">
+                  <Skeleton class="h-4 w-36" />
+                  <Skeleton class="h-4 w-24" />
+                </div>
+              </div>
+            </Fragment>
+          </PreviewCard>
+
+          <PreviewCard
+            id="progress"
+            title="Progress"
+            description="Displays an indicator showing the completion progress of a task."
+            code={`import Progress from '@/components/astro/Progress.astro';\n\n<Progress value={60} />\n<Progress value={25} class="h-2" />`}
+          >
+            <Fragment slot="preview">
+              <div class="w-full max-w-sm space-y-4">
+                <Progress value={30} />
+                <Progress value={60} />
+                <Progress value={90} class="h-2" />
+              </div>
+            </Fragment>
+          </PreviewCard>
+
+          <PreviewCard
+            id="input"
+            title="Input"
+            description="Displays a form input field."
+            code={`import Input from '@/components/astro/Input.astro';\n\n<Input type="text" placeholder="Email address" />\n<Input type="password" placeholder="Password" />`}
+          >
+            <Fragment slot="preview">
+              <div class="w-full max-w-sm space-y-3">
+                <Input type="email" placeholder="Email address" />
+                <Input type="password" placeholder="Password" />
+                <Input type="text" placeholder="Disabled input" disabled />
+              </div>
+            </Fragment>
+          </PreviewCard>
+
+          <PreviewCard
+            id="textarea"
+            title="Textarea"
+            description="Displays a form textarea."
+            code={`import Textarea from '@/components/astro/Textarea.astro';\n\n<Textarea placeholder="Tell us about yourself..." />`}
+          >
+            <Fragment slot="preview">
+              <div class="w-full max-w-sm space-y-3">
+                <Textarea placeholder="Tell us about yourself..." />
+                <Textarea placeholder="Disabled textarea" disabled />
+              </div>
+            </Fragment>
+          </PreviewCard>
+
+          <PreviewCard
+            id="label"
+            title="Label"
+            description="Renders an accessible label associated with controls."
+            code={`import Label from '@/components/astro/Label.astro';\nimport Input from '@/components/astro/Input.astro';\n\n<Label for="email">Email</Label>\n<Input id="email" type="email" placeholder="you@example.com" />`}
+          >
+            <Fragment slot="preview">
+              <div class="w-full max-w-sm space-y-4">
+                <div class="space-y-1.5">
+                  <Label for="ex-email">Email</Label>
+                  <Input id="ex-email" type="email" placeholder="you@example.com" />
+                </div>
+                <div class="space-y-1.5">
+                  <Label for="ex-pass">Password</Label>
+                  <Input id="ex-pass" type="password" placeholder="Enter password" />
+                </div>
+              </div>
+            </Fragment>
+          </PreviewCard>
+
+          <PreviewCard
+            id="breadcrumb"
+            title="Breadcrumb"
+            description="Displays the path to the current resource using a hierarchy of links."
+            code={`import Breadcrumb from '@/components/astro/Breadcrumb.astro';\n\n<Breadcrumb items={[\n  { label: 'Home', href: '/' },\n  { label: 'Components', href: '/components' },\n  { label: 'Breadcrumb' },\n]} />`}
+          >
+            <Fragment slot="preview">
+              <Breadcrumb items={[
+                { label: 'Home', href: '/' },
+                { label: 'Components', href: '#' },
+                { label: 'Breadcrumb' },
+              ]} />
+            </Fragment>
+          </PreviewCard>
+
+          <PreviewCard
+            id="table"
+            title="Table"
+            description="A responsive table component."
+            code={`import Table from '@/components/astro/Table.astro';\n\n<Table\n  columns={[\n    { key: 'invoice', header: 'Invoice' },\n    { key: 'status', header: 'Status' },\n    { key: 'amount', header: 'Amount' },\n  ]}\n  rows={[\n    { invoice: 'INV-001', status: 'Paid', amount: '$250.00' },\n  ]}\n/>`}
+          >
+            <Fragment slot="preview">
+              <div class="w-full">
+                <Table columns={tableColumns} rows={tableRows} />
+              </div>
+            </Fragment>
+          </PreviewCard>
+
+          <div class="flex items-center gap-3 pt-6 pb-1">
+            <span class="flex h-6 w-6 items-center justify-center rounded-md bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+            </span>
+            <h2 class="text-xl font-bold">React Required</h2>
+            <Separator orientation="vertical" class="h-5" />
+            <span class="text-sm text-muted-foreground">Use via shadcn/ui React components</span>
+          </div>
+
+          <div class="grid gap-4 sm:grid-cols-2">
+            {reactSections.map(({ id, label }) => (
+              <ShadcnLinkCard
+                id={id}
+                title={label}
+                shadcnUrl={`https://ui.shadcn.com/docs/components/${id}`}
+              />
+            ))}
+          </div>
+
+          <div class="mt-16 mb-8 rounded-2xl border bg-muted/30 p-8 text-center">
+            <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-primary-foreground">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            </div>
+            <h3 class="text-lg font-bold mb-2">Ready to use in your Astro project?</h3>
+            <p class="text-sm text-muted-foreground mb-6 max-w-md mx-auto">
+              Pick your theme above, download the CSS, drop the component files into your project, and you're done.
+            </p>
+            <div class="flex flex-wrap items-center justify-center gap-3">
+              <a href="https://ui.shadcn.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium hover:bg-accent transition-colors">
+                shadcn/ui docs
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+              </a>
+              <a href="https://astro.build" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium hover:bg-accent transition-colors">
+                Astro docs
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+              </a>
+            </div>
+          </div>
+
+        </main>
+      </div>
+    </div>
+  </div>
+</Layout>
