@@ -25,6 +25,54 @@ import Label from '@/components/astro/Label.astro';
 import Breadcrumb from '@/components/astro/Breadcrumb.astro';
 import Table from '@/components/astro/Table.astro';
 
+import buttonSrc from '@/components/astro/Button.astro?raw';
+import badgeSrc from '@/components/astro/Badge.astro?raw';
+import cardSrc from '@/components/astro/Card.astro?raw';
+import cardHeaderSrc from '@/components/astro/CardHeader.astro?raw';
+import cardTitleSrc from '@/components/astro/CardTitle.astro?raw';
+import cardDescriptionSrc from '@/components/astro/CardDescription.astro?raw';
+import cardContentSrc from '@/components/astro/CardContent.astro?raw';
+import cardFooterSrc from '@/components/astro/CardFooter.astro?raw';
+import alertSrc from '@/components/astro/Alert.astro?raw';
+import alertTitleSrc from '@/components/astro/AlertTitle.astro?raw';
+import alertDescriptionSrc from '@/components/astro/AlertDescription.astro?raw';
+import avatarSrc from '@/components/astro/Avatar.astro?raw';
+import separatorSrc from '@/components/astro/Separator.astro?raw';
+import skeletonSrc from '@/components/astro/Skeleton.astro?raw';
+import progressSrc from '@/components/astro/Progress.astro?raw';
+import inputSrc from '@/components/astro/Input.astro?raw';
+import textareaSrc from '@/components/astro/Textarea.astro?raw';
+import labelSrc from '@/components/astro/Label.astro?raw';
+import breadcrumbSrc from '@/components/astro/Breadcrumb.astro?raw';
+import tableSrc from '@/components/astro/Table.astro?raw';
+import globalsCss from '@/styles/globals.css?raw';
+import utilsTs from '@/lib/utils.ts?raw';
+
+const allComponentFiles = [
+  { path: 'components/astro/Button.astro', content: buttonSrc },
+  { path: 'components/astro/Badge.astro', content: badgeSrc },
+  { path: 'components/astro/Card.astro', content: cardSrc },
+  { path: 'components/astro/CardHeader.astro', content: cardHeaderSrc },
+  { path: 'components/astro/CardTitle.astro', content: cardTitleSrc },
+  { path: 'components/astro/CardDescription.astro', content: cardDescriptionSrc },
+  { path: 'components/astro/CardContent.astro', content: cardContentSrc },
+  { path: 'components/astro/CardFooter.astro', content: cardFooterSrc },
+  { path: 'components/astro/Alert.astro', content: alertSrc },
+  { path: 'components/astro/AlertTitle.astro', content: alertTitleSrc },
+  { path: 'components/astro/AlertDescription.astro', content: alertDescriptionSrc },
+  { path: 'components/astro/Avatar.astro', content: avatarSrc },
+  { path: 'components/astro/Separator.astro', content: separatorSrc },
+  { path: 'components/astro/Skeleton.astro', content: skeletonSrc },
+  { path: 'components/astro/Progress.astro', content: progressSrc },
+  { path: 'components/astro/Input.astro', content: inputSrc },
+  { path: 'components/astro/Textarea.astro', content: textareaSrc },
+  { path: 'components/astro/Label.astro', content: labelSrc },
+  { path: 'components/astro/Breadcrumb.astro', content: breadcrumbSrc },
+  { path: 'components/astro/Table.astro', content: tableSrc },
+  { path: 'styles/globals.css', content: globalsCss },
+  { path: 'lib/utils.ts', content: utilsTs },
+];
+
 const staticSections = [
   'button','badge','card','alert','avatar',
   'separator','skeleton','progress','input',
@@ -117,7 +165,7 @@ const tableRows = [
             Pure Astro components using shadcn/ui's design system. No React, no hydration for static components. Pick a theme, download the CSS, and ship.
           </p>
 
-          <div class="flex flex-wrap gap-4 mb-8">
+          <div class="flex flex-wrap gap-4 mb-5">
             <div class="flex items-center gap-2 text-sm">
               <span class="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400">
                 <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
@@ -136,6 +184,16 @@ const tableRows = [
               </span>
               <span class="text-muted-foreground">6 built-in themes</span>
             </div>
+          </div>
+
+          <div class="mb-8">
+            <button
+              id="download-all-btn"
+              class="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+              Download all components
+            </button>
           </div>
 
           <div class="rounded-xl border bg-card p-5">
@@ -191,6 +249,7 @@ const tableRows = [
             title="Button"
             description="Displays a button or a component that looks like a button."
             code={`import Button from '@/components/astro/Button.astro';\n\n<Button>Click me</Button>\n<Button variant="outline">Outline</Button>\n<Button variant="destructive">Delete</Button>`}
+            files={[{ name: 'Button.astro', content: buttonSrc }]}
           >
             <Fragment slot="preview">
               <Button>Default</Button>
@@ -209,6 +268,7 @@ const tableRows = [
             title="Badge"
             description="Displays a badge or a component that looks like a badge."
             code={`import Badge from '@/components/astro/Badge.astro';\n\n<Badge>Default</Badge>\n<Badge variant="secondary">Secondary</Badge>\n<Badge variant="destructive">Destructive</Badge>\n<Badge variant="outline">Outline</Badge>`}
+            files={[{ name: 'Badge.astro', content: badgeSrc }]}
           >
             <Fragment slot="preview">
               <Badge>Default</Badge>
@@ -223,6 +283,14 @@ const tableRows = [
             title="Card"
             description="Displays a card with header, content, and footer."
             code={`import Card from '@/components/astro/Card.astro';\nimport CardHeader from '@/components/astro/CardHeader.astro';\nimport CardTitle from '@/components/astro/CardTitle.astro';\nimport CardDescription from '@/components/astro/CardDescription.astro';\nimport CardContent from '@/components/astro/CardContent.astro';\nimport CardFooter from '@/components/astro/CardFooter.astro';\n\n<Card>\n  <CardHeader>\n    <CardTitle>Title</CardTitle>\n    <CardDescription>Description</CardDescription>\n  </CardHeader>\n  <CardContent>Content</CardContent>\n  <CardFooter>Footer</CardFooter>\n</Card>`}
+            files={[
+              { name: 'Card.astro', content: cardSrc },
+              { name: 'CardHeader.astro', content: cardHeaderSrc },
+              { name: 'CardTitle.astro', content: cardTitleSrc },
+              { name: 'CardDescription.astro', content: cardDescriptionSrc },
+              { name: 'CardContent.astro', content: cardContentSrc },
+              { name: 'CardFooter.astro', content: cardFooterSrc },
+            ]}
           >
             <Fragment slot="preview">
               <Card class="w-72">
@@ -246,6 +314,11 @@ const tableRows = [
             title="Alert"
             description="Displays a callout for user attention."
             code={`import Alert from '@/components/astro/Alert.astro';\nimport AlertTitle from '@/components/astro/AlertTitle.astro';\nimport AlertDescription from '@/components/astro/AlertDescription.astro';\n\n<Alert>\n  <AlertTitle>Heads up!</AlertTitle>\n  <AlertDescription>You can add components.</AlertDescription>\n</Alert>`}
+            files={[
+              { name: 'Alert.astro', content: alertSrc },
+              { name: 'AlertTitle.astro', content: alertTitleSrc },
+              { name: 'AlertDescription.astro', content: alertDescriptionSrc },
+            ]}
           >
             <Fragment slot="preview">
               <div class="w-full max-w-md space-y-3">
@@ -268,6 +341,7 @@ const tableRows = [
             title="Avatar"
             description="An image element with a fallback for representing the user."
             code={`import Avatar from '@/components/astro/Avatar.astro';\n\n<Avatar src="/photo.jpg" alt="Jane Doe" fallback="JD" />\n<Avatar fallback="AB" />\n<Avatar fallback="TZ" size="lg" />`}
+            files={[{ name: 'Avatar.astro', content: avatarSrc }]}
           >
             <Fragment slot="preview">
               <div class="flex items-center gap-3">
@@ -285,6 +359,7 @@ const tableRows = [
             title="Separator"
             description="Visually or semantically separates content."
             code={`import Separator from '@/components/astro/Separator.astro';\n\n<Separator />\n<Separator orientation="vertical" class="h-6" />`}
+            files={[{ name: 'Separator.astro', content: separatorSrc }]}
           >
             <Fragment slot="preview">
               <div class="w-full max-w-sm space-y-4">
@@ -309,6 +384,7 @@ const tableRows = [
             title="Skeleton"
             description="Use to show a placeholder while content is loading."
             code={`import Skeleton from '@/components/astro/Skeleton.astro';\n\n<Skeleton class="h-4 w-48" />\n<Skeleton class="h-12 w-12 rounded-full" />`}
+            files={[{ name: 'Skeleton.astro', content: skeletonSrc }]}
           >
             <Fragment slot="preview">
               <div class="flex items-center gap-4">
@@ -326,6 +402,7 @@ const tableRows = [
             title="Progress"
             description="Displays an indicator showing the completion progress of a task."
             code={`import Progress from '@/components/astro/Progress.astro';\n\n<Progress value={60} />\n<Progress value={25} class="h-2" />`}
+            files={[{ name: 'Progress.astro', content: progressSrc }]}
           >
             <Fragment slot="preview">
               <div class="w-full max-w-sm space-y-4">
@@ -341,6 +418,7 @@ const tableRows = [
             title="Input"
             description="Displays a form input field."
             code={`import Input from '@/components/astro/Input.astro';\n\n<Input type="text" placeholder="Email address" />\n<Input type="password" placeholder="Password" />`}
+            files={[{ name: 'Input.astro', content: inputSrc }]}
           >
             <Fragment slot="preview">
               <div class="w-full max-w-sm space-y-3">
@@ -356,6 +434,7 @@ const tableRows = [
             title="Textarea"
             description="Displays a form textarea."
             code={`import Textarea from '@/components/astro/Textarea.astro';\n\n<Textarea placeholder="Tell us about yourself..." />`}
+            files={[{ name: 'Textarea.astro', content: textareaSrc }]}
           >
             <Fragment slot="preview">
               <div class="w-full max-w-sm space-y-3">
@@ -370,6 +449,7 @@ const tableRows = [
             title="Label"
             description="Renders an accessible label associated with controls."
             code={`import Label from '@/components/astro/Label.astro';\nimport Input from '@/components/astro/Input.astro';\n\n<Label for="email">Email</Label>\n<Input id="email" type="email" placeholder="you@example.com" />`}
+            files={[{ name: 'Label.astro', content: labelSrc }]}
           >
             <Fragment slot="preview">
               <div class="w-full max-w-sm space-y-4">
@@ -390,6 +470,7 @@ const tableRows = [
             title="Breadcrumb"
             description="Displays the path to the current resource using a hierarchy of links."
             code={`import Breadcrumb from '@/components/astro/Breadcrumb.astro';\n\n<Breadcrumb items={[\n  { label: 'Home', href: '/' },\n  { label: 'Components', href: '/components' },\n  { label: 'Breadcrumb' },\n]} />`}
+            files={[{ name: 'Breadcrumb.astro', content: breadcrumbSrc }]}
           >
             <Fragment slot="preview">
               <Breadcrumb items={[
@@ -405,6 +486,7 @@ const tableRows = [
             title="Table"
             description="A responsive table component."
             code={`import Table from '@/components/astro/Table.astro';\n\n<Table\n  columns={[\n    { key: 'invoice', header: 'Invoice' },\n    { key: 'status', header: 'Status' },\n    { key: 'amount', header: 'Amount' },\n  ]}\n  rows={[\n    { invoice: 'INV-001', status: 'Paid', amount: '$250.00' },\n  ]}\n/>`}
+            files={[{ name: 'Table.astro', content: tableSrc }]}
           >
             <Fragment slot="preview">
               <div class="w-full">
@@ -456,4 +538,21 @@ const tableRows = [
       </div>
     </div>
   </div>
+
+  <script define:vars={{ allComponentFiles }}>
+    document.getElementById('download-all-btn')?.addEventListener('click', async () => {
+      const JSZip = window.JSZip;
+      const zip = new JSZip();
+      for (const file of allComponentFiles) {
+        zip.file('astro-ui/' + file.path, file.content);
+      }
+      const blob = await zip.generateAsync({ type: 'blob' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'astro-ui.zip';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  </script>
 </Layout>

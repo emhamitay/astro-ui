@@ -5,8 +5,10 @@ interface Props {
   code?: string;
   description?: string;
   astroOnly?: boolean;
+  files?: Array<{ name: string; content: string }>;
 }
-const { title, id, code, description, astroOnly = true } = Astro.props;
+const { title, id, code, description, astroOnly = true, files } = Astro.props;
+const downloadId = id ?? title.toLowerCase().replace(/\s+/g, '-');
 ---
 
 <div id={id} class="group rounded-xl border bg-card text-card-foreground shadow-sm overflow-hidden scroll-mt-24">
@@ -19,15 +21,30 @@ const { title, id, code, description, astroOnly = true } = Astro.props;
         </span>
       )}
     </div>
-    {code && (
-      <button
-        class="copy-btn text-xs text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5 rounded-md px-2 py-1 hover:bg-muted"
-        data-code={code}
-        aria-label="Copy code"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-        Copy
-      </button>
+    {(code || files) && (
+      <div class="flex items-center gap-1">
+        {files && (
+          <button
+            class="download-btn text-xs text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5 rounded-md px-2 py-1 hover:bg-muted"
+            data-files={JSON.stringify(files)}
+            data-component={downloadId}
+            aria-label={`Download ${title} file${files.length > 1 ? 's' : ''}`}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+            Download
+          </button>
+        )}
+        {code && (
+          <button
+            class="copy-btn text-xs text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5 rounded-md px-2 py-1 hover:bg-muted"
+            data-code={code}
+            aria-label="Copy code"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+        )}
+      </div>
     )}
   </div>
 
@@ -64,6 +81,36 @@ const { title, id, code, description, astroOnly = true } = Astro.props;
       const original = btn.innerHTML;
       btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Copied!`;
       setTimeout(() => { btn.innerHTML = original; }, 1500);
+    });
+  });
+
+  document.querySelectorAll('.download-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const files: Array<{ name: string; content: string }> = JSON.parse((btn as HTMLElement).dataset.files ?? '[]');
+      const componentName = (btn as HTMLElement).dataset.component ?? 'component';
+
+      if (files.length === 1) {
+        const blob = new Blob([files[0].content], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = files[0].name;
+        a.click();
+        URL.revokeObjectURL(url);
+      } else {
+        const JSZip = (window as any).JSZip;
+        const zip = new JSZip();
+        for (const file of files) {
+          zip.file(file.name, file.content);
+        }
+        const blob = await zip.generateAsync({ type: 'blob' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${componentName}-components.zip`;
+        a.click();
+        URL.revokeObjectURL(url);
+      }
     });
   });
 </script>
