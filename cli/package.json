@@ -1,0 +1,13 @@
+{
+  "name": "astro-ui",
+  "version": "0.0.1",
+  "description": "Astro component library based on shadcn/ui",
+  "main": "bin/index.js",
+  "bin": {
+    "astro-ui": "bin/index.js"
+  },
+  "type": "module",
+  "keywords": ["astro", "shadcn", "components", "tailwind"],
+  "author": "emhamitay",
+  "license": "MIT"
+}
