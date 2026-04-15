@@ -1,0 +1,22 @@
+---
+interface Props {
+  id?: string;
+  name?: string;
+  value?: string;
+  checked?: boolean;
+  disabled?: boolean;
+  class?: string;
+}
+
+const { id, name, value, checked = false, disabled = false, class: className = '' } = Astro.props;
+---
+
+<input
+  type="checkbox"
+  id={id}
+  name={name}
+  value={value}
+  checked={checked}
+  disabled={disabled}
+  class={`h-4 w-4 shrink-0 cursor-pointer rounded-sm border border-primary accent-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
+/>

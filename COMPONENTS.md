@@ -60,6 +60,33 @@ This means the same component type (e.g. `Button`) might use the Astro version i
 
 ---
 
+### Accordion
+
+Description: A vertically stacked set of interactive headings that each reveal a section of content. Uses native HTML `<details>`/`<summary>` — zero JavaScript required.
+
+Files needed: `Accordion.astro`
+
+**Props**
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `{ title: string; content: string; open?: boolean }[]` | required | List of accordion items |
+| `class` | `string` | `''` | Extra Tailwind classes |
+
+**Usage example:**
+```astro
+---
+import Accordion from '@/components/astro/Accordion.astro';
+---
+
+<Accordion items={[
+  { title: 'Is it accessible?', content: 'Yes. It uses native details/summary HTML.' },
+  { title: 'Is it styled?', content: 'Yes. It comes with default styles that match shadcn/ui.' },
+  { title: 'Is it animated?', content: 'Yes. The chevron rotates via CSS transition — no JS required.', open: true },
+]} />
+```
+
+---
+
 ### Alert
 
 Description: Highlighted message box for feedback, warnings, or errors. Supports an optional SVG icon — CSS sibling selectors automatically position the icon and indent content beside it.
@@ -501,6 +528,101 @@ import Label from '@/components/astro/Label.astro';
   <Label for="message">Your message</Label>
   <Textarea id="message" name="message" placeholder="Type your message here..." rows={5} />
 </div>
+```
+
+---
+
+### Checkbox
+
+Description: A boolean form control that allows the user to toggle between checked and not checked. Uses a native `<input type="checkbox">` styled with semantic tokens.
+
+Files needed: `Checkbox.astro`
+
+**Props**
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `id` | `string` | — | Element ID (pair with Label) |
+| `name` | `string` | — | Form field name |
+| `value` | `string` | — | Form field value |
+| `checked` | `boolean` | `false` | Initial checked state |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `class` | `string` | `''` | Extra Tailwind classes |
+
+**Usage example:**
+```astro
+---
+import Checkbox from '@/components/astro/Checkbox.astro';
+import Label from '@/components/astro/Label.astro';
+---
+
+<div class="flex items-center gap-2">
+  <Checkbox id="terms" name="terms" />
+  <Label for="terms">Accept terms and conditions</Label>
+</div>
+
+<div class="flex items-center gap-2">
+  <Checkbox id="newsletter" name="newsletter" checked />
+  <Label for="newsletter">Subscribe to newsletter</Label>
+</div>
+
+<div class="flex items-center gap-2">
+  <Checkbox id="disabled" name="disabled" disabled />
+  <Label for="disabled" class="opacity-50">Disabled option</Label>
+</div>
+```
+
+---
+
+### Select
+
+Description: Displays a dropdown list of options. Uses a native `<select>` element styled to match the design system. Accepts an options array and optional placeholder.
+
+Files needed: `Select.astro`
+
+**Props**
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `options` | `{ value: string; label: string; disabled?: boolean }[]` | required | List of options |
+| `id` | `string` | — | Element ID (pair with Label) |
+| `name` | `string` | — | Form field name |
+| `placeholder` | `string` | — | Placeholder shown when no value is selected |
+| `value` | `string` | — | Initially selected option value |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `required` | `boolean` | `false` | Required field |
+| `class` | `string` | `''` | Extra Tailwind classes |
+
+**Usage example:**
+```astro
+---
+import Select from '@/components/astro/Select.astro';
+import Label from '@/components/astro/Label.astro';
+---
+
+<div class="grid gap-2">
+  <Label for="framework">Framework</Label>
+  <Select
+    id="framework"
+    name="framework"
+    placeholder="Select a framework…"
+    options={[
+      { value: 'astro', label: 'Astro' },
+      { value: 'next', label: 'Next.js' },
+      { value: 'remix', label: 'Remix' },
+      { value: 'nuxt', label: 'Nuxt' },
+    ]}
+  />
+</div>
+
+<!-- Pre-selected value -->
+<Select
+  name="theme"
+  value="dark"
+  options={[
+    { value: 'light', label: 'Light' },
+    { value: 'dark', label: 'Dark' },
+    { value: 'system', label: 'System' },
+  ]}
+/>
 ```
 
 ---
