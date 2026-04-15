@@ -11,15 +11,18 @@ const pkg = JSON.parse(readFileSync(join(__dirname, '../package.json'), 'utf8'))
 const BASE = 'https://raw.githubusercontent.com/emhamitay/astro-ui/main';
 
 const REGISTRY = {
+  accordion:  ['Accordion.astro'],
   alert:      ['Alert.astro', 'AlertTitle.astro', 'AlertDescription.astro'],
   avatar:     ['Avatar.astro'],
   badge:      ['Badge.astro'],
   breadcrumb: ['Breadcrumb.astro'],
   button:     ['Button.astro'],
   card:       ['Card.astro', 'CardHeader.astro', 'CardTitle.astro', 'CardDescription.astro', 'CardContent.astro', 'CardFooter.astro'],
+  checkbox:   ['Checkbox.astro'],
   input:      ['Input.astro'],
   label:      ['Label.astro'],
   progress:   ['Progress.astro'],
+  select:     ['Select.astro'],
   separator:  ['Separator.astro'],
   skeleton:   ['Skeleton.astro'],
   table:      ['Table.astro'],
