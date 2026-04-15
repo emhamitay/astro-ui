@@ -1,0 +1,149 @@
+# astro-ui — AI Component Reference
+# Paste this into v0, Cursor, Copilot, Claude, or any AI tool.
+# Use Astro components for anything that doesn't need JavaScript.
+# Use shadcn/ui React components (from @/components/ui/) for anything interactive.
+
+## Import path
+All Astro components: @/components/astro/ComponentName.astro
+All React components: @/components/ui/component-name.tsx
+
+## Decision rule
+No JS needed (visual/structural) → use Astro version
+Needs JS (state, events, open/close) → use React shadcn/ui version
+
+## Astro Components
+
+### Button
+import Button from '@/components/astro/Button.astro'
+props: variant?='default'|'destructive'|'outline'|'secondary'|'ghost'|'link', size?='default'|'sm'|'lg'|'icon', href?, type?='button'|'submit'|'reset', disabled?
+renders <a> when href is set, <button> otherwise — use React Button for onClick handlers
+<Button href="/page">Link</Button>
+<Button type="submit">Save</Button>
+<Button variant="outline" size="sm">Cancel</Button>
+
+### Badge
+import Badge from '@/components/astro/Badge.astro'
+props: variant?='default'|'secondary'|'destructive'|'outline'
+<Badge>Label</Badge>
+<Badge variant="destructive">Error</Badge>
+
+### Card
+import Card from '@/components/astro/Card.astro'
+import CardHeader from '@/components/astro/CardHeader.astro'
+import CardTitle from '@/components/astro/CardTitle.astro'
+import CardDescription from '@/components/astro/CardDescription.astro'
+import CardContent from '@/components/astro/CardContent.astro'
+import CardFooter from '@/components/astro/CardFooter.astro'
+<Card>
+  <CardHeader><CardTitle>Title</CardTitle><CardDescription>Subtitle</CardDescription></CardHeader>
+  <CardContent>Body here</CardContent>
+  <CardFooter>Footer actions</CardFooter>
+</Card>
+
+### Alert
+import Alert from '@/components/astro/Alert.astro'
+import AlertTitle from '@/components/astro/AlertTitle.astro'
+import AlertDescription from '@/components/astro/AlertDescription.astro'
+props: variant?='default'|'destructive'
+<Alert><AlertTitle>Heads up</AlertTitle><AlertDescription>Details here.</AlertDescription></Alert>
+<Alert variant="destructive"><AlertTitle>Error</AlertTitle><AlertDescription>Something failed.</AlertDescription></Alert>
+
+### Avatar
+import Avatar from '@/components/astro/Avatar.astro'
+props: src?, alt?, fallback?, size?='sm'|'default'|'lg'
+<Avatar src="/photo.jpg" alt="Jane Doe" fallback="JD" />
+<Avatar fallback="AB" size="lg" />
+
+### Breadcrumb
+import Breadcrumb from '@/components/astro/Breadcrumb.astro'
+props: items: { label: string; href?: string }[] — last item is current page (no link)
+<Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Products', href: '/products' }, { label: 'Widget' }]} />
+
+### Input
+import Input from '@/components/astro/Input.astro'
+props: type?='text', placeholder?, value?, name?, id?, required?, disabled?
+<Input type="email" placeholder="you@example.com" name="email" id="email" />
+<Input type="password" name="password" required />
+
+### Textarea
+import Textarea from '@/components/astro/Textarea.astro'
+props: placeholder?, rows?=3, value?, name?, id?, required?, disabled?
+<Textarea placeholder="Message" rows={5} name="message" />
+
+### Label
+import Label from '@/components/astro/Label.astro'
+props: for? (HTML for attribute)
+<Label for="email">Email address</Label>
+
+### Progress
+import Progress from '@/components/astro/Progress.astro'
+props: value?=0, max?=100
+<Progress value={75} />
+<Progress value={30} max={50} />
+
+### Separator
+import Separator from '@/components/astro/Separator.astro'
+props: orientation?='horizontal'|'vertical'
+<Separator />
+<Separator orientation="vertical" class="h-8" />
+
+### Skeleton
+import Skeleton from '@/components/astro/Skeleton.astro'
+props: class? (required for sizing — animated pulse placeholder)
+<Skeleton class="h-4 w-48" />
+<Skeleton class="h-10 w-10 rounded-full" />
+
+### Table
+import Table from '@/components/astro/Table.astro'
+props: columns: { key: string; header: string; class?: string }[], rows: Record<string, string|number>[], caption?
+<Table
+  columns={[{ key: 'name', header: 'Name' }, { key: 'role', header: 'Role' }]}
+  rows={[{ name: 'Alice', role: 'Admin' }, { name: 'Bob', role: 'User' }]}
+/>
+
+## React Components (shadcn/ui — JS required)
+Install with npx shadcn@latest add <name>. Import from @/components/ui/.
+
+Accordion           import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
+AlertDialog         import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogTitle, AlertDialogDescription, AlertDialogAction, AlertDialogCancel } from '@/components/ui/alert-dialog'
+Calendar            import { Calendar } from '@/components/ui/calendar'
+Carousel            import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
+Checkbox            import { Checkbox } from '@/components/ui/checkbox'
+Collapsible         import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible'
+Command             import { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem } from '@/components/ui/command'
+ContextMenu         import { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem } from '@/components/ui/context-menu'
+Dialog              import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog'
+Drawer              import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerFooter } from '@/components/ui/drawer'
+DropdownMenu        import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@/components/ui/dropdown-menu'
+Form                import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
+HoverCard           import { HoverCard, HoverCardTrigger, HoverCardContent } from '@/components/ui/hover-card'
+InputOTP            import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/input-otp'
+NavigationMenu      import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent, NavigationMenuLink } from '@/components/ui/navigation-menu'
+Popover             import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover'
+RadioGroup          import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+Resizable           import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from '@/components/ui/resizable'
+ScrollArea          import { ScrollArea } from '@/components/ui/scroll-area'
+Select              import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select'
+Sheet               import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet'
+Slider              import { Slider } from '@/components/ui/slider'
+Sonner              import { Toaster } from '@/components/ui/sonner'  (trigger with toast() from 'sonner')
+Switch              import { Switch } from '@/components/ui/switch'
+Tabs                import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
+Toast               import { useToast } from '@/components/ui/use-toast'
+Toggle              import { Toggle } from '@/components/ui/toggle'
+ToggleGroup         import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
+Tooltip             import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@/components/ui/tooltip'
+
+## Theming
+All components use CSS variables defined in src/styles/globals.css.
+Tokens: --background, --foreground, --primary, --primary-foreground, --secondary,
+        --muted, --accent, --destructive, --border, --input, --ring, --radius
+Dark mode: add class="dark" to <html>
+Six built-in themes: default, zinc, slate, rose, orange, blue
+
+## CLI
+npx @emhamitay/astro-ui init                        # copy globals.css + utils.ts to your project
+npx @emhamitay/astro-ui add button                  # copy a single component
+npx @emhamitay/astro-ui add card badge separator    # copy multiple
+npx @emhamitay/astro-ui add --all                   # copy all Astro components
+npx @emhamitay/astro-ui list                        # list available components

@@ -47,6 +47,7 @@ import breadcrumbSrc from '@/components/astro/Breadcrumb.astro?raw';
 import tableSrc from '@/components/astro/Table.astro?raw';
 import globalsCss from '@/styles/globals.css?raw';
 import utilsTs from '@/lib/utils.ts?raw';
+import componentsMd from '../../COMPONENTS.md?raw';
 
 const allComponentFiles = [
   { path: 'components/astro/Button.astro', content: buttonSrc },
@@ -165,6 +166,12 @@ const tableRows = [
             Pure Astro components using shadcn/ui's design system. No React, no hydration for static components. Pick a theme, download the CSS, and ship.
           </p>
 
+          <div class="mb-6 rounded-lg border bg-muted/50 px-4 py-3 font-mono text-sm text-muted-foreground overflow-x-auto">
+            <span class="text-emerald-600 dark:text-emerald-400 select-none">$ </span>npx @emhamitay/astro-ui init
+            <br />
+            <span class="text-emerald-600 dark:text-emerald-400 select-none">$ </span>npx @emhamitay/astro-ui add --all
+          </div>
+
           <div class="flex flex-wrap gap-4 mb-5">
             <div class="flex items-center gap-2 text-sm">
               <span class="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400">
@@ -184,6 +191,35 @@ const tableRows = [
               </span>
               <span class="text-muted-foreground">6 built-in themes</span>
             </div>
+            <div class="flex items-center gap-2 text-sm">
+              <span class="flex h-5 w-5 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></svg>
+              </span>
+              <span class="text-muted-foreground">CLI installer via npx</span>
+            </div>
+          </div>
+
+          <div class="mb-6 rounded-xl border bg-card p-5">
+            <div class="flex items-center gap-2 mb-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 8v4l3 3"/><circle cx="18" cy="6" r="3"/></svg>
+              <span class="text-sm font-semibold">⚡ AI Component Selection Guide</span>
+            </div>
+            <p class="text-xs text-muted-foreground mb-3">
+              This library covers the <strong>zero-JS</strong> use case. Pick the right version based on whether the component needs JavaScript:
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+              <div class="rounded-lg border border-emerald-200 bg-emerald-50 dark:border-emerald-800 dark:bg-emerald-950/30 p-3">
+                <p class="font-semibold text-emerald-700 dark:text-emerald-400 mb-1">❌ No JS needed → Astro component</p>
+                <p class="text-muted-foreground">Button (link/submit), Card, Badge, Avatar, Input, Textarea, Label, Table, Breadcrumb, Progress, Skeleton, Separator, Accordion, Checkbox, Select</p>
+              </div>
+              <div class="rounded-lg border border-amber-200 bg-amber-50 dark:border-amber-800 dark:bg-amber-950/30 p-3">
+                <p class="font-semibold text-amber-700 dark:text-amber-400 mb-1">✅ Needs JS → React shadcn/ui</p>
+                <p class="text-muted-foreground">Dialog, Sheet, Drawer, DropdownMenu, Popover, Tooltip, Tabs, Switch, Slider, Toast, Sonner — anything with click handlers or state</p>
+              </div>
+            </div>
+            <p class="text-xs text-muted-foreground mt-3 italic">
+              The same component type (e.g. Button) may use either version depending on what it needs to <em>do</em>.
+            </p>
           </div>
 
           <div class="mb-8">
@@ -202,6 +238,66 @@ const tableRows = [
               <span class="text-sm font-semibold">Theme Switcher & CSS Download</span>
             </div>
             <ThemeSwitcher />
+          </div>
+
+          <div class="mt-4 rounded-xl border bg-card p-5">
+            <div class="flex items-center gap-2 mb-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></svg>
+              <span class="text-sm font-semibold">CLI Usage</span>
+            </div>
+            <div class="space-y-2 font-mono text-xs text-muted-foreground">
+              <div class="flex items-start gap-2">
+                <span class="text-emerald-600 dark:text-emerald-400 shrink-0">$</span>
+                <span>npx @emhamitay/astro-ui init <span class="text-muted-foreground/60"># fetch globals.css + utils.ts</span></span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="text-emerald-600 dark:text-emerald-400 shrink-0">$</span>
+                <span>npx @emhamitay/astro-ui add button <span class="text-muted-foreground/60"># add a single component</span></span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="text-emerald-600 dark:text-emerald-400 shrink-0">$</span>
+                <span>npx @emhamitay/astro-ui add card badge separator <span class="text-muted-foreground/60"># add multiple</span></span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="text-emerald-600 dark:text-emerald-400 shrink-0">$</span>
+                <span>npx @emhamitay/astro-ui add --all <span class="text-muted-foreground/60"># add everything</span></span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="text-emerald-600 dark:text-emerald-400 shrink-0">$</span>
+                <span>npx @emhamitay/astro-ui list <span class="text-muted-foreground/60"># see all available components</span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 rounded-xl border bg-card p-5">
+            <div class="flex items-center gap-2 mb-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+              <span class="text-sm font-semibold">Using with AI Tools</span>
+              <span class="text-xs text-muted-foreground">(v0, Cursor, Copilot, etc.)</span>
+            </div>
+            <p class="text-xs text-muted-foreground mb-4">
+              When using AI tools like v0, Cursor, Copilot, or Claude to generate components, give the AI the component reference as context so it generates correct Astro-native code instead of React.
+              Copy the reference below, or paste the raw file URL directly into tools that accept a URL as context.
+            </p>
+            <div class="flex flex-wrap items-center gap-3">
+              <button
+                id="copy-components-btn"
+                class="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                <span id="copy-components-label">Copy AI Context</span>
+              </button>
+              <a
+                href="https://raw.githubusercontent.com/emhamitay/astro-ui/main/public/llms.txt"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors underline underline-offset-2"
+              >
+                Raw file link
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+              </a>
+            </div>
+            <p class="mt-2 text-xs text-muted-foreground/70">paste this URL into tools that accept a link as context (points to llms.txt)</p>
           </div>
         </div>
       </section>
@@ -553,6 +649,17 @@ const tableRows = [
       a.download = 'astro-ui.zip';
       a.click();
       URL.revokeObjectURL(url);
+    });
+  </script>
+  <script define:vars={{ componentsMd }}>
+    document.getElementById('copy-components-btn')?.addEventListener('click', () => {
+      navigator.clipboard.writeText(componentsMd).then(() => {
+        const label = document.getElementById('copy-components-label');
+        if (label) {
+          label.textContent = 'Copied!';
+          setTimeout(() => { label.textContent = 'Copy AI Context'; }, 1500);
+        }
+      });
     });
   </script>
 </Layout>

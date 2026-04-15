@@ -2,6 +2,8 @@
 
 A shadcn/ui-based component library for Astro. **No JavaScript required** for these components — all are pure server-rendered HTML. Uses Tailwind CSS + CSS variables for theming.
 
+---
+
 ## Setup
 
 1. Copy `src/styles/globals.css` to your project's `src/styles/`
@@ -14,6 +16,43 @@ A shadcn/ui-based component library for Astro. **No JavaScript required** for th
 ```json
 { "paths": { "@/*": ["./src/*"] } }
 ```
+
+---
+
+## ⚡ AI Component Selection Guide
+
+**This library only covers the zero-JS use case.** Before reaching for any component, apply this decision rule:
+
+### Does the component need JavaScript to function?
+
+| Needs JS? | Use |
+|-----------|-----|
+| ❌ No — purely visual/structural | **Astro component** from `@/components/astro/` |
+| ✅ Yes — any interactivity, state, open/close, events | **shadcn/ui React component** from `@/components/ui/` |
+
+### Common examples
+
+**Use the Astro version:**
+- `<Button>` that submits a native HTML form (`type="submit"`) or is a plain `<a>` link — no JS needed
+- `<Card>`, `<Badge>`, `<Avatar>`, `<Separator>`, `<Skeleton>`, `<Progress>` — purely visual
+- `<Input>`, `<Textarea>`, `<Label>` — native HTML form elements, no JS needed
+- `<Breadcrumb>`, `<Table>` — static display
+
+**Use the shadcn React version:**
+- `<Button>` that triggers a JS action (opens a modal, submits via fetch, toggles state, calls `onClick`)
+- `<Dialog>`, `<Sheet>`, `<Drawer>` — require open/close state
+- `<DropdownMenu>`, `<Select>`, `<Popover>`, `<Tooltip>` — require JS positioning + open state
+- `<Accordion>`, `<Collapsible>`, `<Tabs>` — require JS toggling
+- `<Checkbox>`, `<Switch>`, `<RadioGroup>`, `<Slider>` — require JS controlled state
+- `<Toast>`, `<Sonner>` — require JS to trigger
+- Any component where the user interacts and the UI must respond dynamically
+
+### Rule of thumb
+
+> If the component would work as plain HTML without any `<script>` tag, use the Astro version.  
+> If it needs a click handler, state, or dynamic behavior — use the React shadcn/ui version.
+
+This means the same component type (e.g. `Button`) might use the Astro version in one context and the React version in another, depending on what it needs to *do*.
 
 ---
 
@@ -157,6 +196,8 @@ const crumbs = [
 ### Button
 
 Description: Polymorphic action element. Renders as `<a>` when `href` is provided, otherwise as `<button>`. Supports 6 variants and 4 sizes.
+
+> **Note for AI:** Use this Astro Button only when no JavaScript handler is needed — e.g. `type="submit"` on a native form, or a plain link. If the button needs an `onClick`, calls a JS function, or triggers any dynamic behavior, use the shadcn React `Button` from `@/components/ui/button` instead.
 
 Files needed: `Button.astro`
 
@@ -470,7 +511,7 @@ Real-world patterns combining multiple components:
 
 ```astro
 ---
-// Login form
+// Login form — all static HTML, no JS needed → use Astro components
 import Card from '@/components/astro/Card.astro';
 import CardHeader from '@/components/astro/CardHeader.astro';
 import CardTitle from '@/components/astro/CardTitle.astro';
