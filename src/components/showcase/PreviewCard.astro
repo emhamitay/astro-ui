@@ -6,8 +6,9 @@ interface Props {
   description?: string;
   astroOnly?: boolean;
   files?: Array<{ name: string; content: string }>;
+  shadcnUrl?: string;
 }
-const { title, id, code, description, astroOnly = true, files } = Astro.props;
+const { title, id, code, description, astroOnly = true, files, shadcnUrl } = Astro.props;
 const downloadId = id ?? title.toLowerCase().replace(/\s+/g, '-');
 ---
 
@@ -50,6 +51,21 @@ const downloadId = id ?? title.toLowerCase().replace(/\s+/g, '-');
 
   {description && (
     <p class="px-5 pt-4 text-sm text-muted-foreground">{description}</p>
+  )}
+
+  {shadcnUrl && (
+    <div class="px-5 pt-2">
+      <a
+        href={shadcnUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1 text-xs text-muted-foreground/60 hover:text-foreground transition-colors"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+        Need state or interaction? Use the React shadcn/ui version
+        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+      </a>
+    </div>
   )}
 
   <div class="flex flex-wrap items-center gap-3 p-5">

@@ -246,6 +246,13 @@ const tableRows = [
               <span class="text-sm font-semibold">Theme Switcher & CSS Download</span>
             </div>
             <ThemeSwitcher />
+            <div class="mt-3 flex flex-wrap items-center justify-between gap-2">
+              <p class="text-xs text-muted-foreground/60">Optional: <span class="font-medium text-muted-foreground">Geist Sans</span> — same font as shadcn.com, not required.</p>
+              <button id="copy-geist-btn" class="inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 text-xs text-muted-foreground hover:bg-accent hover:text-foreground transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                <span id="copy-geist-label">Copy font snippet</span>
+              </button>
+            </div>
           </div>
 
           <div class="mt-4 rounded-xl border bg-card p-5">
@@ -351,7 +358,8 @@ const tableRows = [
           <PreviewCard
             id="accordion"
             title="Accordion"
-            description="A vertically stacked set of interactive headings that each reveal a section of content."
+            description="Zero-JS accordion using native details/summary elements. The chevron animates via CSS only."
+            shadcnUrl="https://ui.shadcn.com/docs/components/accordion"
             code={`import Accordion from '@/components/astro/Accordion.astro';\n\n<Accordion items={[\n  { title: 'Is it accessible?', content: 'Yes. It uses native <details>/<summary> HTML.' },\n  { title: 'Is it styled?', content: 'Yes. It comes with default styles.' },\n  { title: 'Is it animated?', content: 'Yes. The chevron rotates via CSS.' },\n]} />`}
             files={[{ name: 'Accordion.astro', content: accordionSrc }]}
           >
@@ -621,6 +629,7 @@ const tableRows = [
             id="checkbox"
             title="Checkbox"
             description="A control that allows the user to toggle between checked and not checked."
+            shadcnUrl="https://ui.shadcn.com/docs/components/checkbox"
             code={`import Checkbox from '@/components/astro/Checkbox.astro';\nimport Label from '@/components/astro/Label.astro';\n\n<div class="flex items-center gap-2">\n  <Checkbox id="terms" name="terms" />\n  <Label for="terms">Accept terms and conditions</Label>\n</div>`}
             files={[{ name: 'Checkbox.astro', content: checkboxSrc }]}
           >
@@ -645,7 +654,8 @@ const tableRows = [
           <PreviewCard
             id="select"
             title="Select"
-            description="Displays a list of options for the user to pick from — triggered by a button."
+            description="Styled native select element. The dropdown panel is OS-styled — for a fully custom dropdown, use the React shadcn/ui version."
+            shadcnUrl="https://ui.shadcn.com/docs/components/radix/select"
             code={`import Select from '@/components/astro/Select.astro';\nimport Label from '@/components/astro/Label.astro';\n\n<Label for="framework">Framework</Label>\n<Select\n  id="framework"\n  name="framework"\n  placeholder="Select a framework…"\n  options={[\n    { value: 'astro', label: 'Astro' },\n    { value: 'next', label: 'Next.js' },\n    { value: 'remix', label: 'Remix' },\n  ]}\n/>`}
             files={[{ name: 'Select.astro', content: selectSrc }]}
           >
@@ -747,6 +757,25 @@ const tableRows = [
         if (label) {
           label.textContent = 'Copied!';
           setTimeout(() => { label.textContent = 'Copy AI Context'; }, 1500);
+        }
+      });
+    });
+  </script>
+  <script>
+    const geistSnippet = `<!-- In your layout's <head> -->
+<link href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans/400.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans/500.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans/600.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans/700.css" rel="stylesheet" />
+
+/* In your global CSS */
+html { font-family: 'Geist Sans', system-ui, sans-serif; }`;
+    document.getElementById('copy-geist-btn')?.addEventListener('click', () => {
+      navigator.clipboard.writeText(geistSnippet).then(() => {
+        const label = document.getElementById('copy-geist-label');
+        if (label) {
+          label.textContent = 'Copied!';
+          setTimeout(() => { label.textContent = 'Copy font snippet'; }, 1500);
         }
       });
     });

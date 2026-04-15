@@ -1,6 +1,6 @@
 {
   "name": "@emhamitay/astro-ui",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "shadcn/ui component library for Astro — zero JS, full theming, instant install via CLI",
   "main": "bin/index.js",
   "bin": {

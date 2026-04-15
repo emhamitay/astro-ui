@@ -13,9 +13,10 @@ const { title } = Astro.props;
 		<meta name="description" content="Astro UI - A Shadcn component library for Astro" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+		<link href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans/400.css" rel="stylesheet" />
+		<link href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans/500.css" rel="stylesheet" />
+		<link href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans/600.css" rel="stylesheet" />
+		<link href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans/700.css" rel="stylesheet" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
@@ -26,7 +27,7 @@ const { title } = Astro.props;
 </html>
 <style is:global>
 	html {
-		font-family: 'Inter', system-ui, sans-serif;
+		font-family: 'Geist Sans', system-ui, sans-serif;
 		scroll-behavior: smooth;
 	}
 	code, pre {
